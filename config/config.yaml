@@ -1,0 +1,19 @@
+server:
+  port: "8080"
+
+database:
+  host: "192.168.32.137"
+  port: "3306"
+  user: "root"
+  password: "123"
+  dbname: "go1_mysql"
+
+redis:
+  host: "192.168.32.137"
+  port: "6379"
+  password: ""
+  db: 0
+
+jwt:
+  secret: "your-secret-key"
+  expire: 7200  # token过期时间(秒)
