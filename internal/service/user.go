@@ -46,7 +46,7 @@ func (s *UserService) Login(username, password string) (string, error) {
 	return token, nil
 }
 
-// 获取用户信息
+// GetUserInfo 获取用户信息
 func (s *UserService) GetUserInfo(userID uint) (*model.User, error) {
 	user, err := s.userDAO.GetByID(userID)
 	if err != nil {
@@ -55,7 +55,7 @@ func (s *UserService) GetUserInfo(userID uint) (*model.User, error) {
 	return user, nil
 }
 
-// 更新用户信息
+// UpdateUserInfo 更新用户信息
 func (s *UserService) UpdateUserInfo(user *model.User) error {
 	if user.ID == 0 {
 		return errors.New("invalid user id")

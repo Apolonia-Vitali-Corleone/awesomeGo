@@ -75,3 +75,6 @@ project-name/
 ├── go.sum           # Go 模块校验和
 ├── Makefile         # 项目管理工具
 └── README.md        # 项目说明文档
+
+管理员账户 (admin/admin123)
+测试账户 (test/test123)

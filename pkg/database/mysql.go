@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-func InitDB(cfg config.DatabaseConfig) (*gorm.DB, error) {
+func InitDB(cfg config.MySQLConfig) (*gorm.DB, error) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		cfg.User,
 		cfg.Password,

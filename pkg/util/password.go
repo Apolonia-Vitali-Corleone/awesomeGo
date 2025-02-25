@@ -1,17 +1,25 @@
+// pkg/util/password.go
 package util
 
 import (
+	"fmt"
 	"golang.org/x/crypto/bcrypt"
 )
 
-// HashPassword 对密码进行哈希处理
 func HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	return string(bytes), err
+	if err != nil {
+		fmt.Printf("Hash password error: %v\n", err)
+		return "", err
+	}
+	return string(bytes), nil
 }
 
-// CheckPasswordHash 验证密码
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
+	if err != nil {
+		fmt.Printf("Check password error: %v\n", err)
+		return false
+	}
+	return true
 }

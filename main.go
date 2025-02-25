@@ -2,6 +2,8 @@
 package main
 
 import (
+	"context"
+	"fmt"
 	"github.com/spf13/viper"
 	"go1/config"
 	"go1/internal/dao"
@@ -9,9 +11,19 @@ import (
 	"go1/internal/service"
 	"go1/pkg/database"
 	"log"
+	"time"
 )
 
+func worker(ctx context.Context) {
+	select {
+	case <-time.After(3 * time.Second):
+		fmt.Println("任务完成")
+	case <-ctx.Done():
+		fmt.Println("任务被取消")
+	}
+}
 func main() {
+
 	// 加载配置
 	var cfg config.Config
 	viper.SetConfigName("config")

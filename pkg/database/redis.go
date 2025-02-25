@@ -1,4 +1,4 @@
-// pkg/database/redis.go
+// Package database pkg/database/redis.go
 package database
 
 import (

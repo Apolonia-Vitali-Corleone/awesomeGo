@@ -14,3 +14,7 @@ type User struct {
 	Role     string `gorm:"size:64;default:user" json:"role"`
 	Status   int    `gorm:"type:tinyint(1);default:1" json:"status"` // 0-禁用 1-启用
 }
+
+func (User) TableName() string {
+	return "users" // 或者 "users" 根据实际情况
+}
