@@ -31,7 +31,7 @@ func InitRouter(userService *service.UserService) *gin.Engine {
 	r.Use(middleware.Cors())
 
 	// 公开路由
-	public := r.Group("/api/v1")
+	public := r.Group("/")
 	{
 		// 注册处理器
 		public.POST("/register", func(c *gin.Context) {
@@ -74,10 +74,24 @@ func InitRouter(userService *service.UserService) *gin.Engine {
 				"token": token,
 			})
 		})
+
+		// 获取所有的用户列表
+		public.GET("/users", func(c *gin.Context) {
+			// 获取所有用户列表
+			users, err := userService.GetAllUsers()
+			if err != nil {
+				response.Error(c, e.ERROR, err.Error())
+				return
+			}
+			// 返回所有用户的列表
+			response.Success(c, gin.H{
+				"users": users,
+			})
+		})
 	}
 
 	// 需要认证的路由
-	auth := r.Group("/api/v1")
+	auth := r.Group("/")
 	auth.Use(middleware.JWT())
 	{
 		// 获取用户信息

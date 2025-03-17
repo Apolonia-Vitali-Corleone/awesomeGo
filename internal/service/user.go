@@ -62,3 +62,11 @@ func (s *UserService) UpdateUserInfo(user *model.User) error {
 	}
 	return s.userDAO.Update(user)
 }
+
+func (s *UserService) GetAllUsers() ([]model.User, error) {
+	users, err := s.userDAO.GetAll()
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}

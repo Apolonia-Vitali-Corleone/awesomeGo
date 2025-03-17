@@ -38,3 +38,13 @@ func (d *UserDAO) Update(user *model.User) error {
 		"email":    user.Email,
 	}).Error
 }
+
+// GetAll 获取所有用户信息
+func (d *UserDAO) GetAll() ([]model.User, error) {
+	var users []model.User
+	err := d.db.Find(&users).Error
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}
